@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>设置页面</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        name="viewport">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/camralHelp.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- 头部 -->
+        <header class="main-header">
+	
+  </header>
+        <!-- 页面内容 -->
+        <div class="content-wrapper">
+            <section class="content-header">
+     <h1>
+      设置页面
+      </h1>
+    </section>
+            <div>
+            </div>
+            <!-- 主体内容 -->
+            <section class="content">
+		<form name="myfm">
+			 <!--帐号设置 -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">帐号设置</h3>
+				</div>
+				<div class="panel-body">
+				 <div class="form-horizontal" role="form">
+				  <div class="form-group">
+					<label class="col-sm-2 control-label">APPKEY</label>
+					<div class="col-sm-8">
+						 <input type="text" class="form-control" id="ilink-appkey" />
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">SECURTKEY</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="ilink-securtkey" />
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">UID</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="ilink-uid" />
+					</div>
+				  </div>
+				</div>
+				</div>
+			</div>
+			 
+			 <!--服务器设置 -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">服务器设置</h3>
+				</div>
+				<div class="panel-body">
+				 <div class="form-horizontal" role="form">
+				  <div class="form-group">
+					<label class="col-sm-2 control-label">地址</label>
+					<div class="col-sm-8">
+					   <input type="text" class="form-control" id="ilink-server" />
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">端口</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="ilink-port" />
+					</div>
+				  </div>
+				</div>
+				</div>
+			</div>
+			 
+			 <!--摄像头设置 -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">摄像头设置</h3>
+				</div>
+				<div class="panel-body camList" id='camList'>
+				 <div class="form-horizontal" role="form">
+				 <!-- 摄像头1 -->
+
+				 <div class="form-group">
+						<label class="col-sm-2 control-label">选择摄像头</label>
+						<div class="col-sm-8">
+							 <input type="text" class="control-label col-sm-8" id="cam1-name" readonly="readonly" />
+							 <select class="btn btn-default  col-sm-4"  id="mySelect" onchange="changeCamIndex(this.options[this.options.selectedIndex].value)">
+							</select>
+						</div>
+				</div>
+				
+				  <div class="form-group">
+						<label for="inputtext" class="col-sm-2 control-label">上报周期</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="cam1-rec_cycle" />
+						</div>
+				  </div>
+				  
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">视频取流地址</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="cam1-rec_in_addr" />
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">视频存放位置</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="cam1-rec_out_addr" />
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">播放输入位置</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="cam1-play_in_addr" />
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">播放输出位置</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="cam1-play_out_addr" />
+					</div>
+
+				</div>
+                <div class="form-group">
+						<label class="col-sm-2 control-label"></label>
+						<div class="col-sm-8">
+                        	 <input type="button" class="control btn btn-primary col-sm-4" value="新增" onclick="doCreateCamInfo()"/>
+							 <input type="button" class="control btn btn-primary col-sm-4" value="删除" onclick="doDeleteCamInfo()"/>
+							 <input type="button" class="control btn btn-primary col-sm-4" value="保存" onclick="doSaveCamInfo()"/>
+						</div>
+				</div>
+
+				</div>
+			    </div>      
+            </div>
+
+		
+
+
+			 <!--WIFI设置 -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">WIFI设置</h3>
+				</div>
+				<div class="panel-body">
+				 <div class="form-horizontal" role="form">
+				  <div class="form-group">
+					<label class="col-sm-2 control-label">模式</label>
+					<div class="col-sm-8">
+					   <input type="text" class="form-control" id="wifi-mode" />
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">接入路由名称</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="wifi-ssid" />
+					</div>
+				  </div>
+				  
+				  <div class="form-group">
+					<label for="inputtext" class="col-sm-2 control-label">接入路由密码</label>
+					<div class="col-sm-8">
+					  <input type="text" class="form-control" id="wifi-passwd" />
+					</div>
+				  </div>
+				</div>
+				</div>
+			</div>
+				
+              <!--操作按钮 -->
+			<div class="panel panel-info">
+
+				<div class="panel-body">
+				 <div class="form-horizontal" role="form">
+                <div class="form-group">
+						<label class="col-sm-2 control-label"></label>
+						<div class="col-sm-8">
+                        	 <input type="button" class="control btn btn-primary col-sm-4" value="设置" onclick="doSubmit()"/>
+							 <input type="button" class="control btn btn-primary col-sm-4" value="恢复出厂设置" onclick="doReset()"/>
+						</div>
+				</div>
+
+				 
+				  </div>
+				</div>
+				</div>
+            </div>
+
+
+		 </form>
+	</section>
+            <!-- /.content -->
+        </div>
+        <!-- 页底 -->
+        <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+      
+        </div>
+        <strong>Copyright &copy; 2016 .</strong> All rights reserved. 
+      </footer>
+    </div>
+
+</body>
+</html>
