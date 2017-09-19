@@ -265,6 +265,7 @@ function doSubmit() {
     var ilink = {};
     var wifi = {};
     var cameras = [];
+    var camListTemp = [];
 
     ilink.uid = $.trim($('#ilink-uid').val());
     ilink.appkey = $.trim($('#ilink-appkey').val());
@@ -277,7 +278,17 @@ function doSubmit() {
     var camerasStr = sessionStorage.getItem("cameras");
     if (camerasStr != undefined) {
         cameras = JSON.parse(camerasStr);
-        dataJson.cameras = cameras;
+        if (cameras != undefined && cameras.length > 0) {         
+            for (var i = 0; i < length; i++) {
+                var camTemp = cameras[i];
+                if (camTemp != undefined && camTemp.name != undefined && camTemp.name.length > 0) {
+                    camListTemp.push(camTemp);
+                }
+            }
+            if (camListTemp.length > 0)
+                dataJson.cameras = camListTemp;
+        }
+
     }
 
     wifi.mode = $.trim($('#wifi-mode').val());
@@ -288,6 +299,8 @@ function doSubmit() {
     if (!doCheck(ilink, wifi, cameras))
         doSaveConfig(url, dataJson);
     else {
+        alert("参数错误");
+        
     }
 
 
@@ -352,9 +365,19 @@ function doGetConfig() {
             var wifi = data.wifi;
             var ilink = data.ilink;
             var cameras = data.cameras;
+            var camListTemp = [];
+
             sessionStorage.removeItem("cameras");
-            if (cameras != undefined && cameras.length>0)
-                sessionStorage.setItem("cameras", JSON.stringify(cameras));
+            if (cameras != undefined && cameras.length > 0) {
+                for (var i = 0; i < length; i++) {
+                    var camTemp = cameras[i];
+                    if (camTemp != undefined && camTemp.name != undefined && camTemp.name.length > 0) {
+                        camListTemp.push(camTemp);
+                    }
+                }
+                if (camListTemp.length>0)
+                    sessionStorage.setItem("cameras", JSON.stringify(camListTemp));
+            }
 
             initIlink(ilink);
             initWifi(wifi);
