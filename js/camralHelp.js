@@ -37,6 +37,10 @@ function doSaveCamInfo() {
         alert("摄像头信息不能为空");
         return;
     }
+    if(doCheckCamError(camNew)){
+        alert("摄像头信息不完整");
+        return;
+    }
 
     var cameras = [];
     var camerasStr = sessionStorage.getItem("cameras");
