@@ -279,7 +279,7 @@ function doSubmit() {
     if (camerasStr != undefined) {
         cameras = JSON.parse(camerasStr);
         if (cameras != undefined && cameras.length > 0) {         
-            for (var i = 0; i < length; i++) {
+            for (var i = 0; i < cameras.length; i++) {
                 var camTemp = cameras[i];
                 if (camTemp != undefined && camTemp.name != undefined && camTemp.name.length > 0) {
                     camListTemp.push(camTemp);
@@ -369,7 +369,7 @@ function doGetConfig() {
 
             sessionStorage.removeItem("cameras");
             if (cameras != undefined && cameras.length > 0) {
-                for (var i = 0; i < length; i++) {
+                for (var i = 0; i < cameras.length; i++) {
                     var camTemp = cameras[i];
                     if (camTemp != undefined && camTemp.name != undefined && camTemp.name.length > 0) {
                         camListTemp.push(camTemp);
