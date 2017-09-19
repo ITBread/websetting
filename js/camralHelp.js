@@ -33,7 +33,8 @@ function setCamInfo(cam) {
 
 function doSaveCamInfo() {
     var camNew = getCamInfo();
-    if (camNew == undefined) {
+    if (camNew == undefined || camNew.name == undefined || camNew.name.length < 1) {
+        alert("摄像头信息不能为空");
         return;
     }
 
@@ -42,33 +43,32 @@ function doSaveCamInfo() {
     if (camerasStr == undefined) {
         cameras.push(camNew);
         sessionStorage.setItem("cameras", JSON.stringify(cameras));
+        initSelect(cameras);
+        alert(camNew.name + "新增保存成功");
         return;
+    } else {
+        cameras = JSON.parse(camerasStr);  
     }
-    
-    cameras = JSON.parse(camerasStr);
-    if (cameras == undefined || cameras.length == 0)
-        return;
+
     var exist = false;
+    var msg = "";
     for (var nu = 0; nu < cameras.length; nu++) {
         if (cameras[nu].name == camNew.name) {
             exist = true;
             cameras[nu] = camNew;
-            sessionStorage.removeItem("cameras");
-            sessionStorage.setItem("cameras", JSON.stringify(cameras));
-            initSelect(cameras);
-            alert(camNew.name+"更新成功");
-            return;
+            msg = "更新成功";
+            break;
         }
     }
 
     if (!exist) {
         cameras.push(camNew);
-        sessionStorage.removeItem("cameras");
-        sessionStorage.setItem("cameras", JSON.stringify(cameras));
-        var selectIndex = $("#mySelect ").get(0).selectedIndex;
-        initSelect(cameras);
-        alert(camNew.name + "新增保存成功");
+         msg = "新增保存成功";
     }
+    sessionStorage.removeItem("cameras");
+    sessionStorage.setItem("cameras", JSON.stringify(cameras));
+    initSelect(cameras);
+    alert(camNew.name + msg);
 
 
 }
@@ -76,7 +76,7 @@ function doSaveCamInfo() {
 function doDeleteCamInfo() {
     $('#cam1-name').attr("readonly", "readonly");
     var camNew = getCamInfo();
-    if (camNew == undefined || camNew.name == undefined || camNew.name == "") {
+    if (camNew == undefined || camNew.name == undefined ) {
         alert("被删摄像头名称不能为空");
         return;
     }
@@ -349,7 +349,7 @@ function doGetConfig() {
             var ilink = data.ilink;
             var cameras = data.cameras;
             sessionStorage.removeItem("cameras");
-            if (cameras!=undefined)
+            if (cameras != undefined && cameras.length>0)
                 sessionStorage.setItem("cameras", JSON.stringify(cameras));
 
             initIlink(ilink);
