@@ -336,6 +336,7 @@ function doSaveConfig(url, jsondata) {
         success: function (result) {
             if (result.code == 1) {
                 alert("保存成功");
+                location.reload();
             }
             else {
                 alert("保存失败");
@@ -410,7 +411,8 @@ function initIlink(ilink) {
 
 function initWifi(wifi) {
     if (wifi != undefined) {
-        $('#wifi-mode').val(wifi.mode);
+        if (wifi.mode != undefined)
+        $('#wifi-mode').val(wifi.mode.toUpperCase());
         $('#wifi-ssid').val(wifi.ssid);
         $('#wifi-passwd').val(wifi.passwd);
     }

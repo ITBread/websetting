@@ -55,11 +55,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="boxsetting.html" />
     <Content Include="css\bootstrap.css" />
     <Content Include="js\camralHelp.js" />
+    <Content Include="js\inputHelp.js" />
     <Content Include="js\jquery.js" />
     <Content Include="lib\Newtonsoft.Json.dll" />
+    <Content Include="setting.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

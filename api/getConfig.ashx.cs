@@ -25,6 +25,7 @@ namespace Setting.api
             ilink.Add("server", "www.kfchain.com");
             ilink.Add("port", 8085);
 
+			data.Add("code", 1);
             data.Add("ilink", ilink);
             data.Add("wifi", wifi);
             wifi.Add("mode", "APSTA");
